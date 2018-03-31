@@ -1,17 +1,23 @@
-import { createStore, applyMiddleware, compose, combineReducers, GenericStoreEnhancer, Store, StoreEnhancerStoreCreator, ReducersMapObject } from "redux";
+import {
+  createStore,
+  applyMiddleware,
+  compose,
+  combineReducers,
+  GenericStoreEnhancer,
+  Store,
+  StoreEnhancerStoreCreator,
+  ReducersMapObject
+} from "redux";
 import sagaMiddlewareFactory from "redux-saga";
 import { routerReducer, routerMiddleware } from "react-router-redux";
 import * as StoreModule from "./store";
-import { ApplicationState, reducers } from "./store";
+import { IApplicationState, reducers } from "./store";
 import rootSaga from "#sagas"
 import { History } from "history";
 
-export default function configureStore(history: History, initialState?: ApplicationState) {
-    // Build middleware. These are functions that can process the actions before they reach the store.
+export default function configureStore(history: History, initialState?: IApplicationState) {
     const windowIfDefined = typeof window === "undefined" ? null : window as any;
-    // If devTools is installed, connect to it
     const devToolsExtension = windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__ as () => GenericStoreEnhancer;
-
     const sagaMiddleware = sagaMiddlewareFactory();
 
     const createStoreWithMiddleware: any = compose(
@@ -19,13 +25,11 @@ export default function configureStore(history: History, initialState?: Applicat
         devToolsExtension ? devToolsExtension() : <S>(next: StoreEnhancerStoreCreator<S>) => next
     )(createStore);
 
-    // Combine all reducers and instantiate the app-wide store instance
     const allReducers = buildRootReducer(reducers);
-    const store = createStoreWithMiddleware(allReducers, initialState) as Store<ApplicationState>;
+    const store = createStoreWithMiddleware(allReducers, initialState) as Store<IApplicationState>;
 
     sagaMiddleware.run(rootSaga);
 
-    // Enable Webpack hot module replacement for reducers
     if (module.hot) {
         module.hot.accept("./store", () => {
             const nextRootReducer = require<typeof StoreModule>("./store");
@@ -37,5 +41,5 @@ export default function configureStore(history: History, initialState?: Applicat
 }
 
 function buildRootReducer(allReducers: ReducersMapObject) {
-    return combineReducers<ApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));
+    return combineReducers<IApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));
 }

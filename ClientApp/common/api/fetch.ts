@@ -2,39 +2,49 @@
 import * as init from "./inits";
 import { OptionSpec } from "./inits";
 
-const defaultOptionSpecs = [
+const defaultOptionSpecs: (() => OptionSpec)[] = [
   init.contentTypeJson,
 ];
 
-export function createFetch(baseUrl: string, ...baseOptionSpecs: OptionSpec[]) {
-  const commonOptionSpecs = [
+export interface IFetch {
+  get(resource: string, data?: any, ...options: (() => OptionSpec)[]): Promise<Response>;
+  post(resource: string, data: any, ...options: (() => OptionSpec)[]): Promise<Response>;
+}
+
+export function createFetch(baseUrl: string, ...baseOptionSpecs: (() => OptionSpec)[]): IFetch {
+  const commonOptionSpecs: (() => OptionSpec)[] = [
     ...defaultOptionSpecs,
     ...baseOptionSpecs,
   ];
 
-  const internalFetch = (resource: string, data: any, ...optionSpecs: OptionSpec[]) => {
-    const url = new Uri(resource).absoluteTo(baseUrl).href();
-    const fullOptionSpecs = [
+  const internalFetch: (resource: string, data: any, ...optionSpecs: (() => OptionSpec)[]) => Promise<Response> =
+   (resource, data, ...optionSpecs) => {
+    const uri: uri.URI = new Uri(resource + "?").absoluteTo(baseUrl);
+    const fullOptionSpecs: (() => OptionSpec)[] = [
       ...commonOptionSpecs,
-      init.bodyContent(data),
+      data? init.bodyContent(data) : init.empty,
       ...optionSpecs
     ];
 
-    const fullOptions = fullOptionSpecs.reduce((cur, next) => ({ ...cur, ...next() }), {});
-    const fetchInit = {
+    const fullOptions: init.IInitParams =
+      fullOptionSpecs.reduce((cur: init.IInitParams, next) =>
+      ({ ...next().func(cur.opts, cur.hdrs, cur.uri) }), { uri });
+    const fetchInit: any = {
       ...fullOptions.opts,
-      ...(fullOptions.headers ? { headers: fullOptions.headers } : {}),
+      ...(fullOptions.hdrs ? { headers: fullOptions.hdrs } : {}),
     };
+
+    const url: string = fullOptions.uri.href();
 
     return fetch(url, fetchInit);
   };
 
   return {
-    get(resource: string, data: any = null, ...options: OptionSpec[]) {
+    get(resource: string, data?: any, ...options: (() => OptionSpec)[]): Promise<Response> {
       return internalFetch(resource, data, init.methodGet, ...options);
     },
 
-    post(resource: string, data: any, ...options: OptionSpec[]) {
+    post(resource: string, data: any, ...options: (() => OptionSpec)[]): Promise<Response> {
       return internalFetch(resource, data, init.methodPost, ...options);
     },
   };

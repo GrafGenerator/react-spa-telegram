@@ -1,1 +1,1 @@
-﻿export const apiBaseUrl: string = "http://localhost:5002/";
+﻿export const apiBaseUrl: string = "http://easylabs-001-site1.ctempurl.com/";

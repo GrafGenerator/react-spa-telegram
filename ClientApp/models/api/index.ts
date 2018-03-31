@@ -1,1 +1,1 @@
-﻿export * from "./ResourceEntryCategoryApiModel";
+﻿export * from "./messageApiModel";

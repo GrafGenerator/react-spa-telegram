@@ -1,9 +1,11 @@
-import * as ResourceEntryCategories from "./ResourceEntryCategories";
+import * as Messages from "./messages";
 
-export interface ApplicationState {
-  resourceEntryCategories: ResourceEntryCategories.ResourceEntryCategoriesState;
+export interface IApplicationState {
+  messages: Messages.IMessagesState;
 }
 
 export const reducers = {
-  resourceEntryCategories: ResourceEntryCategories.reducer,
+  messages: Messages.reducer,
 };
+
+export const getMessages: (state: IApplicationState) => Messages.IMessagesState = (state) => state.messages;
