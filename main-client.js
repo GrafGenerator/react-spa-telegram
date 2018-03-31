@@ -7539,13 +7539,14 @@ var TelegramLogin = /** @class */ (function (_super) {
         script.setAttribute("data-request-access", "write");
         script.setAttribute("data-onauth", "TelegramLoginWidget.callbackOnAuth(user)");
         script.async = true;
-        document.body.appendChild(script);
+        this.instance.appendChild(script);
     };
     TelegramLogin.prototype.onAuth = function (user) {
         alert(JSON.stringify(user));
     };
     TelegramLogin.prototype.render = function () {
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: function (el) { return (_this.instance = el); } },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("script", { async: true, src: "https://telegram.org/js/telegram-widget.js?4", "data-telegram-login": "ready_player_one_bot", "data-size": "large", "data-onauth": "this.onAuth(user)", "data-request-access": "write" }));
     };
     return TelegramLogin;
