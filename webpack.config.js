@@ -21,7 +21,7 @@ module.exports = (env) => {
             },
             output: {
                 filename: "[name].js",
-                publicPath: "/",
+                publicPath: "/react-spa-telegram",
                 path: "dist",
             },
             devServer: {

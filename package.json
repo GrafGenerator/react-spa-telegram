@@ -1,7 +1,7 @@
 {
   "name": "react-telegram-spa",
   "private": true,
-  "homepage": "https://grafgenerator.github.io/wefwef/",
+  "homepage": "https://grafgenerator.github.io/react-spa-telegram/",
   "version": "0.0.0",
   "description": "",
   "license": "",
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -d --inline --progress --no-info --host 127.0.0.1 --port 8001",
-    "predeloy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d wwwroot/dist"
   },
   "devDependencies": {
