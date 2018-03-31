@@ -7183,7 +7183,7 @@ function buildRootReducer(allReducers) {
 
 
 var routes = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Layout */], null,
-    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* Route */], { exact: true, path: "/", component: __WEBPACK_IMPORTED_MODULE_3__components_Home__["a" /* default */] }));
+    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* Route */], { exact: true, path: "/react-spa-telegram", component: __WEBPACK_IMPORTED_MODULE_3__components_Home__["a" /* default */] }));
 
 
 /***/ }),
