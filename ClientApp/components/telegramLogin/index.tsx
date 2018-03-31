@@ -2,7 +2,13 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 const styles: any = require<any>("./style.scss");
 
-export class TelegramLogin extends React.Component<{}, {}> {
+interface ITelegramLoginState {
+  instance: any;
+}
+
+export class TelegramLogin extends React.Component<{}, ITelegramLoginState> {
+
+    public instance: any;
 
     public componentDidMount(): void {
       (window as any).TelegramLoginWidget = {
@@ -17,7 +23,7 @@ export class TelegramLogin extends React.Component<{}, {}> {
       script.setAttribute("data-onauth", "TelegramLoginWidget.callbackOnAuth(user)");
       script.async = true;
 
-      document.body.appendChild(script);
+      this.instance.appendChild(script);
     }
 
     private onAuth(user: any): void {
@@ -25,7 +31,7 @@ export class TelegramLogin extends React.Component<{}, {}> {
     }
 
     public render(): React.ReactNode {
-      return <div >
+      return <div ref={el => (this.instance = el)}>
           <script
             async
             src="https://telegram.org/js/telegram-widget.js?4"
