@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "lib": ["es6", "dom"],
+    "types": ["webpack-env"],
+    "paths": {
+      "#models/*": ["ClientApp/models/*"],
+      "#store/*": ["ClientApp/store/*"],
+      "#sagas": ["ClientApp/sagas/index.ts"],
+      "#sagas/*": ["ClientApp/sagas/*"],
+      "#common/*": ["ClientApp/common/*"],
+      "#config/*": ["ClientApp/config/*"],
+      "#api": ["ClientApp/api/index.ts"],
+      "#api/*": ["ClientApp/api/*"]
+    }
+  },
+  "exclude": [
+      "bin",
+      "node_modules"
+  ]
+}
