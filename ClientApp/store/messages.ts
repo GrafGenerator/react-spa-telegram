@@ -40,6 +40,7 @@ export type RequestMessagesAction = {
 export type RequestMessagesSuccessfulAction = {
   type: typeof REQUEST_MESSAGES_SUCCESSFUL;
   messages: MessageModel[];
+  requestedCount: number;
 };
 
 export type RequestMessagesFailedAction = {
@@ -58,16 +59,24 @@ type KnownAction = RequestMessagesAction
 
 // ===== Action creators =====
 
-export const actionCreators: any = {
+export interface IMessageActionCreators {
+  request: (offset: number, count: number) => RequestMessagesAction;
+  successful: (messages: MessageModel[], requestedCount: number) => RequestMessagesSuccessfulAction;
+  failed: (error: IRequestError) => RequestMessagesFailedAction;
+  refresh: () => RefreshMessagesAction;
+}
+
+export const actionCreators: IMessageActionCreators = {
   request: (offset: number, count: number): RequestMessagesAction => ({
     type: REQUEST_MESSAGES,
     offset,
     count
   }),
 
-  successful: (messages: any): RequestMessagesSuccessfulAction => ({
+  successful: (messages: MessageModel[], requestedCount: number): RequestMessagesSuccessfulAction => ({
     type: REQUEST_MESSAGES_SUCCESSFUL,
-    messages
+    messages,
+    requestedCount
   }),
 
   failed: (error: IRequestError): RequestMessagesFailedAction => ({
@@ -111,7 +120,7 @@ export const reducer: Reducer<IMessagesState> =
             ...state.items,
             ...successfulAction.messages
           ],
-          hasMore: successfulAction.messages.length > 0
+          hasMore: successfulAction.messages.length === successfulAction.requestedCount
         };
 
       case REQUEST_MESSAGES_FAILED:

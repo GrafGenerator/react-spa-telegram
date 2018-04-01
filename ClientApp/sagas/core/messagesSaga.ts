@@ -1,6 +1,6 @@
 ﻿import { call, put, takeLatest } from "redux-saga/effects";
 import { getLatestMessages } from "#api";
-import { MessageApiModel, IMessagesRequest } from "#models/api";
+import { IMessageApiModel, IMessagesRequest } from "#models/api";
 import { requestFailure} from "#store/requestStatus";
 import {
   REQUEST_MESSAGES,
@@ -10,8 +10,9 @@ import {
   REFRESH_MESSAGES
 } from "#store/messages";
 import { ApiMessagesFetchCount } from "#config/constants";
+import { MessageModel, UserModel } from "#models/domain";
 
-function* getLatestMessagesRequest(action: RequestMessagesAction) {
+function* getLatestMessagesRequest(action: RequestMessagesAction): any {
   try {
     const request: IMessagesRequest = {
       pid: 1, // hardcode!!!
@@ -19,19 +20,25 @@ function* getLatestMessagesRequest(action: RequestMessagesAction) {
       count: action.count
     };
 
-    const messages: MessageApiModel[] = yield call(getLatestMessages, request);
+    const messagesApiModels: IMessageApiModel[] = yield call(getLatestMessages, request);
 
-    yield put(actionCreators.successful(messages));
+    const messages: MessageModel[] = messagesApiModels.map(a => {
+      const user: UserModel = new UserModel(a.user.id, a.user.first_name, a.user.last_name, a.user.user_name);
+
+      return new MessageModel(a.id, a.comment_text, user);
+    });
+
+    yield put(actionCreators.successful(messages, action.count));
   } catch (e) {
     yield put(actionCreators.failed(requestFailure(400 /*WTF?!*/, e.message)));
   }
 }
 
-function* refreshMessages(action: RefreshMessagesAction) {
+function* refreshMessages(action: RefreshMessagesAction): any {
     yield put(actionCreators.request(0, ApiMessagesFetchCount));
 }
 
-function* messagesSaga() {
+function* messagesSaga(): any {
   yield takeLatest(REQUEST_MESSAGES, getLatestMessagesRequest);
   yield takeLatest(REFRESH_MESSAGES, refreshMessages);
 }

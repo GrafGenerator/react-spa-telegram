@@ -4,6 +4,7 @@ import { OptionSpec } from "./inits";
 
 const defaultOptionSpecs: (() => OptionSpec)[] = [
   init.contentTypeJson,
+  init.cors
 ];
 
 export interface IFetch {

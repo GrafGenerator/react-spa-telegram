@@ -1,3 +1,25 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+
 .home {
-  background-color: lighten(red, 20%);
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: #E8F6F3;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.home__messagesBlock {
+  flex: 1 0 auto;
+}
+
+.home__loginBlock {
+  flex: 0 0 500px;
 }

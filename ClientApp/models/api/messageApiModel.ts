@@ -1,11 +1,14 @@
-﻿export class MessageApiModel {
-  constructor(
-    public id: number,
-    public text: string,
-    public channelId: number,
-    public userId: number | null
-  ) {
-  }
+﻿export interface IMessageApiModel {
+  id: number;
+  comment_text: string;
+  user: IMessageUserApiModel;
+}
+
+export interface IMessageUserApiModel {
+  id: number;
+  first_name: string;
+  last_name: string;
+  user_name: string;
 }
 
 export interface IMessagesRequest {

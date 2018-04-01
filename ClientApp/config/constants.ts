@@ -1,1 +1,1 @@
-export const ApiMessagesFetchCount: number = 5;
+export const ApiMessagesFetchCount: number = 3;

@@ -16,7 +16,7 @@ export class TelegramLogin extends React.Component<{}, ITelegramLoginState> {
       };
 
       const script: HTMLScriptElement = document.createElement("script");
-      script.src = "https://telegram.org/js/telegram-widget.js?2";
+      script.src = "https://telegram.org/js/telegram-widget.js?4";
       script.setAttribute("data-telegram-login", "ready_player_one_bot");
       script.setAttribute("data-size", "large");
       script.setAttribute("data-request-access", "write");

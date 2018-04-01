@@ -1,1 +1,1 @@
-﻿export const apiBaseUrl: string = "http://easylabs-001-site1.ctempurl.com/";
+﻿export const apiBaseUrl: string = "https://comment.watch/marta/api/v1/";

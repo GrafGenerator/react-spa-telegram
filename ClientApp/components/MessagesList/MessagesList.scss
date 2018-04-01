@@ -1,3 +1,115 @@
 .messagesList {
-  background-color: lighten(green, 30%);
+  height: 95%;
+  padding: 20px;
+  border-radius: 15px;
+
+  border: 1px solid #0B5345;
+
+  background: #4CA1AF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: stretch;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.messagesList__inner {
+  flex: 1 0 auto;
+
+  overflow: auto;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: space-between;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.messagesList__loadMore {
+  width: 100%;
+  height: 40px;
+  line-height: 30px;
+  padding: 5px 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #0B5345;
+  border-radius: 30px;
+  background-color: darken(#4CA1AF, 15);
+  color: lighten(#4CA1AF, 50);
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.messagesList__loadMore--unavailable {
+  display: none;
+}
+
+.message {
+  flex: 0 0 auto;
+
+  min-width: 200px;
+
+  border: 1px solid #0B5345;
+  border-radius: 15px;
+  padding: 5px 15px;
+
+  background-color: lighten(#4CA1AF, 35);
+
+  margin-bottom: 10px;
+}
+
+.message_author {
+  width: 100%;
+  font-weight: bold;
+}
+
+.message_text {
+  width: 100%;
+}
+
+.postMessage {
+  flex: 0 0 150px;
+
+  border-top: 1px solid #0B5345;
+  padding-top: 10px;
+}
+
+.postMessage__commentText {
+  width: 100%;
+}
+
+.postMessage__commentText > textarea {
+  width: 100%;
+  height: 100px;
+  outline: 0;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.postMessage__actions {
+  width: 100%;
+
+  margin-top: 5px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.postMessage__sendButton {
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #0B5345;
+  border-radius: 30px;
+  background-color: lighten(#0B5345, 15);
+  margin-left: 10px;
 }

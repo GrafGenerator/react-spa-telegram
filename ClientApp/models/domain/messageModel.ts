@@ -1,9 +1,10 @@
-﻿export class MessageModel {
+﻿import { UserModel } from "#models/domain";
+
+export class MessageModel {
   constructor(
     public id: number,
     public text: string,
-    public channelId: number,
-    public userId: number | null
+    public user: UserModel | null
   ) {
   }
 }

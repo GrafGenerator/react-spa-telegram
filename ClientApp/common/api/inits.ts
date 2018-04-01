@@ -61,3 +61,15 @@ export const searchUriSegment: (name: string, value: any) => () => OptionSpec =
     func: apply({}, {}, (uri: uri.URI) => (uri.addSearch(name, value))),
     scope: OptionScope.Uri
   });
+
+export const noCors: () => OptionSpec =
+  () => ({
+    func: apply({ mode: "no-cors" }),
+    scope: OptionScope.Other
+  });
+
+export const cors: () => OptionSpec =
+  () => ({
+    func: apply({ mode: "cors" }),
+    scope: OptionScope.Other
+  });
