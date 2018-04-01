@@ -17,6 +17,8 @@ export default class Home extends React.Component<RouteComponentProps<{}>, {}> {
           </div>
           <div className={styles.home__loginBlock}>
             <TelegramLogin/>
+            <br/>
+            <a href="https://github.com/GrafGenerator/react-spa-telegram">Source code</a>
           </div>
         </div>;
     }
