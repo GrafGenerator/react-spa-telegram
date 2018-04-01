@@ -5,6 +5,10 @@ import {
   IRequestStatus,
   RequestStatus
 } from "#store/requestStatus";
+import { PostMessageSuccessfulAction, POST_MESSAGE_SUCCESSFUL } from "#store/postMessage";
+
+import { groupBy, map, Dictionary } from "lodash";
+
 
 // ===== State =====
 
@@ -55,7 +59,8 @@ export type RefreshMessagesAction = {
 type KnownAction = RequestMessagesAction
   | RequestMessagesSuccessfulAction
   | RequestMessagesFailedAction
-  | RefreshMessagesAction;
+  | RefreshMessagesAction
+  | PostMessageSuccessfulAction;
 
 // ===== Action creators =====
 
@@ -91,6 +96,20 @@ export const actionCreators: IMessageActionCreators = {
 
 // ===== Reducer =====
 
+function mergeMessages(coll1: MessageModel[], coll2: MessageModel[]): MessageModel[] {
+  const grouped: Dictionary<MessageModel[]> = groupBy(
+    [ ...coll1, ...coll2],
+    (m) => m.id
+  );
+
+  const merged: MessageModel[] = map(
+    grouped,
+    m => m[m.length - 1]
+  );
+
+  return merged;
+}
+
 export const reducer: Reducer<IMessagesState> =
   (state: IMessagesState = initialState, action: KnownAction) => {
     switch (action.type) {
@@ -116,10 +135,7 @@ export const reducer: Reducer<IMessagesState> =
         return {
           ...state,
           status: successfulStatus,
-          items: [
-            ...state.items,
-            ...successfulAction.messages
-          ],
+          items: mergeMessages(state.items, successfulAction.messages),
           hasMore: successfulAction.messages.length === successfulAction.requestedCount
         };
 
@@ -141,6 +157,14 @@ export const reducer: Reducer<IMessagesState> =
         const refreshAction: RefreshMessagesAction = <RefreshMessagesAction>action;
 
         return initialState;
+
+      case POST_MESSAGE_SUCCESSFUL:
+        const postSuccessfulAction: PostMessageSuccessfulAction = <PostMessageSuccessfulAction>action;
+
+        return {
+          ...state,
+          items: mergeMessages([postSuccessfulAction.postedMessage], state.items)
+        };
 
       default:
         // the following line guarantees that every action in the KnownAction union has been covered by a case above

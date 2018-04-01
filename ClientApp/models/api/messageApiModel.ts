@@ -16,3 +16,9 @@ export interface IMessagesRequest {
   offset: number;
   count: number;
 }
+
+export interface IPostMessageRequest {
+  uid?: number;
+  channel_post: number;
+  comment_text: string;
+}

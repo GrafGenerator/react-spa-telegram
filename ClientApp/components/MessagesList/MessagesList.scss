@@ -17,15 +17,16 @@
 }
 
 .messagesList__inner {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 
-  overflow: auto;
+  overflow-y: auto;
 
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column-reverse nowrap;
   align-content: space-between;
-  justify-content: flex-end;
+  justify-content: end;
   align-items: flex-start;
+  min-height: 0;
 }
 
 .messagesList__loadMore {
@@ -59,6 +60,10 @@
   background-color: lighten(#4CA1AF, 35);
 
   margin-bottom: 10px;
+}
+
+.message--self {
+  align-self: flex-end;
 }
 
 .message_author {

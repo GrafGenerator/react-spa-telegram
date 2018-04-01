@@ -9,13 +9,13 @@ import {
   actionCreators,
   REFRESH_MESSAGES
 } from "#store/messages";
-import { ApiMessagesFetchCount } from "#config/constants";
+import { ApiMessagesFetchCount, HardcodedPostId } from "#config/constants";
 import { MessageModel, UserModel } from "#models/domain";
 
 function* getLatestMessagesRequest(action: RequestMessagesAction): any {
   try {
     const request: IMessagesRequest = {
-      pid: 1, // hardcode!!!
+      pid: HardcodedPostId, // hardcode!!!
       offset: action.offset,
       count: action.count
     };

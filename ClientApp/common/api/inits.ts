@@ -48,13 +48,17 @@ export const contentTypeJson: () => OptionSpec = () => ({
 });
 
 export const bodyContent: (content: any, contentType?: string) => () => OptionSpec =
-  (content, contentType?) => () => ({
-    func: apply({ content }, {
-            ...(contentType ? { "Content-Type": contentType } : {}),
-            ...(content.length != null ? { "Content-Length": byteLength(content) } : {}),
-          }),
-    scope: OptionScope.Other
-  });
+  (content, contentType?) => () => {
+    const jsonBody: string = JSON.stringify(content);
+
+    return {
+      func: apply({ body: jsonBody }, {
+              ...(contentType ? { "Content-Type": contentType } : {}),
+              ...(content.length != null ? { "Content-Length": byteLength(content) } : {}),
+            }),
+      scope: OptionScope.Other
+    };
+  };
 
 export const searchUriSegment: (name: string, value: any) => () => OptionSpec =
   (name, value) => () => ({

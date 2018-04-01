@@ -12,6 +12,7 @@ export default class Home extends React.Component<RouteComponentProps<{}>, {}> {
             <MessagesList
               messages={[]}
               loadMoreMessages={() => { return; } }
+              postMessage={() => { return; } }
               hasMoreMessages={true} />
           </div>
           <div className={styles.home__loginBlock}>
