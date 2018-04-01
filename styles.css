@@ -1,8 +1,36 @@
 .MessagesList__messagesList___1cXEH {
-  background-color: #1aff1a; }
+  height: 95%;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #0B5345;
+  background: #4CA1AF;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #C4E0E5, #4CA1AF);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 .style__tl-login___28yy- {
   background-color: aquamarine; }
+body {
+  padding: 0;
+  margin: 0; }
+
 .Home__home___1cAgY {
-  background-color: #ff6666; }
+  width: 100%;
+  height: 100vmax;
+  margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: #E8F6F3;
+  box-sizing: border-box;
+  padding: 20px; }
+
+.Home__home__messagesBlock___1s6et {
+  flex: 1 0 auto; }
+
+.Home__home__loginBlock___1BmgF {
+  flex: 0 0 500px; }
 
 /*# sourceMappingURL=styles.css.map*/
