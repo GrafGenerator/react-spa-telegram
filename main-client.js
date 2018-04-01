@@ -7695,8 +7695,8 @@ var TelegramLogin = /** @class */ (function (_super) {
             callbackOnAuth: function (user) { return _this.onAuth(user); }
         };
         var script = document.createElement("script");
-        script.src = "https://telegram.org/js/telegram-widget.js?2";
-        script.setAttribute("data-telegram-login", "ready_player_one_bot");
+        script.src = "https://telegram.org/js/telegram-widget.js?4";
+        script.setAttribute("data-telegram-login", "@mart_robot");
         script.setAttribute("data-size", "large");
         script.setAttribute("data-request-access", "write");
         script.setAttribute("data-onauth", "TelegramLoginWidget.callbackOnAuth(user)");
@@ -7708,8 +7708,7 @@ var TelegramLogin = /** @class */ (function (_super) {
     };
     TelegramLogin.prototype.render = function () {
         var _this = this;
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: function (el) { return (_this.instance = el); } },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("script", { async: true, src: "https://telegram.org/js/telegram-widget.js?4", "data-telegram-login": "ready_player_one_bot", "data-size": "large", "data-onauth": "this.onAuth(user)", "data-request-access": "write" }));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: function (el) { return (_this.instance = el); } }));
     };
     return TelegramLogin;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
