@@ -2120,16 +2120,16 @@ var buffers = {
 
 "use strict";
 /* unused harmony export OptionScope */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return empty; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return methodGet; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return methodPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return empty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return methodGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return methodPost; });
 /* unused harmony export methodPut */
 /* unused harmony export methodDelete */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return contentTypeJson; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return bodyContent; });
+/* unused harmony export contentTypeJson */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return bodyContent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return searchUriSegment; });
 /* unused harmony export noCors */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return cors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return cors; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_byte_length__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_byte_length___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_byte_length__);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
@@ -7672,8 +7672,8 @@ var __spread = (this && this.__spread) || function () {
 
 
 var defaultOptionSpecs = [
-    __WEBPACK_IMPORTED_MODULE_1__inits__["b" /* contentTypeJson */],
-    __WEBPACK_IMPORTED_MODULE_1__inits__["c" /* cors */]
+    // init.contentTypeJson,
+    __WEBPACK_IMPORTED_MODULE_1__inits__["b" /* cors */]
 ];
 function createFetch(baseUrl) {
     var baseOptionSpecs = [];
@@ -7688,7 +7688,7 @@ function createFetch(baseUrl) {
         }
         var uri = new __WEBPACK_IMPORTED_MODULE_0_urijs__(resource + "?").absoluteTo(baseUrl);
         var fullOptionSpecs = __spread(commonOptionSpecs, [
-            data ? __WEBPACK_IMPORTED_MODULE_1__inits__["d" /* bodyContent */](data) : __WEBPACK_IMPORTED_MODULE_1__inits__["e" /* empty */]
+            data ? __WEBPACK_IMPORTED_MODULE_1__inits__["c" /* bodyContent */](data) : __WEBPACK_IMPORTED_MODULE_1__inits__["d" /* empty */]
         ], optionSpecs);
         var fullOptions = fullOptionSpecs.reduce(function (cur, next) {
             return (__assign({}, next().func(cur.opts, cur.hdrs, cur.uri)));
@@ -7703,14 +7703,14 @@ function createFetch(baseUrl) {
             for (var _i = 2; _i < arguments.length; _i++) {
                 options[_i - 2] = arguments[_i];
             }
-            return internalFetch.apply(void 0, __spread([resource, data, __WEBPACK_IMPORTED_MODULE_1__inits__["f" /* methodGet */]], options));
+            return internalFetch.apply(void 0, __spread([resource, data, __WEBPACK_IMPORTED_MODULE_1__inits__["e" /* methodGet */]], options));
         },
         post: function (resource, data) {
             var options = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 options[_i - 2] = arguments[_i];
             }
-            return internalFetch.apply(void 0, __spread([resource, data, __WEBPACK_IMPORTED_MODULE_1__inits__["g" /* methodPost */]], options));
+            return internalFetch.apply(void 0, __spread([resource, data, __WEBPACK_IMPORTED_MODULE_1__inits__["f" /* methodPost */]], options));
         },
     };
 }
