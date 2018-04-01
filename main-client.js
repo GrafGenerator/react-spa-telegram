@@ -7730,7 +7730,9 @@ var Home = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: styles.home__messagesBlock },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__MessagesList__["a" /* default */], { messages: [], loadMoreMessages: function () { return; }, postMessage: function () { return; }, hasMoreMessages: true })),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: styles.home__loginBlock },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__telegramLogin__["a" /* TelegramLogin */], null)));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__telegramLogin__["a" /* TelegramLogin */], null),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("br", null),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("a", { href: "https://github.com/GrafGenerator/react-spa-telegram" }, "Source code")));
     };
     return Home;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
