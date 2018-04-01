@@ -7696,7 +7696,7 @@ var TelegramLogin = /** @class */ (function (_super) {
         };
         var script = document.createElement("script");
         script.src = "https://telegram.org/js/telegram-widget.js?4";
-        script.setAttribute("data-telegram-login", "@mart_robot");
+        script.setAttribute("data-telegram-login", "mart_robot");
         script.setAttribute("data-size", "large");
         script.setAttribute("data-request-access", "write");
         script.setAttribute("data-onauth", "TelegramLoginWidget.callbackOnAuth(user)");
